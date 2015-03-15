@@ -145,7 +145,12 @@ class rundeck::params {
       'role_object_class'       => 'group',
       'supplemental_roles'      => 'user',
       'nested_groups'           => true
-    }
+    },
+    'pam' => {
+      'pam_service'             => 'password-auth',
+      'useUnixGroups'           => true,
+      'supplementalRoles'       => 'user'
+      }
   }
 
   $mail_config = {}

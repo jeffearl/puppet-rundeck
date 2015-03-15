@@ -8,6 +8,8 @@ authentication {
   <%=     scope.function_template(['rundeck/_auth_ad.erb']) %>
   <%-   when 'file' -%>
   <%=     scope.function_template(['rundeck/_auth_file.erb']) %>
+  <%-   when 'pam' -%>
+  <%=     scope.function_template(['rundeck/_auth_pam.erb']) %>
   <%-   else
         end
       end

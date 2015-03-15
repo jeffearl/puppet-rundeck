@@ -54,10 +54,14 @@ class rundeck::config(
 
     $active_directory_auth_flag = 'sufficient'
     $ldap_auth_flag = 'sufficient'
+    $pam_auth_flag = 'sufficient'
   }
   elsif 'active_directory' in $auth_types {
     $active_directory_auth_flag = 'required'
     $ldap_auth_flag = 'sufficient'
+  }
+  elsif 'pam' in $auth_types {
+    $pam_auth_flag = 'sufficient'
   }
   else {
     $ldap_auth_flag = 'required'
