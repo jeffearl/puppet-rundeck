@@ -1,5 +1,11 @@
+#!/usr/bin/env bash
 
 if [ -x /usr/bin/dpkg ]; then
   VERSION=`dpkg -l | grep rundeck | awk '{ print $3}'`
   echo "rundeck_version=$VERSION"
+  else
+    if which rpm >/dev/null 2>&1; then
+      VERSION=`rpm -qi rundeck | grep Version | awk '{print $3}'`
+      echo "rundeck_version=$VERSION"
+    fi
 fi
