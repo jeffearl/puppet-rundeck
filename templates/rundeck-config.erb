@@ -24,10 +24,8 @@ grails {
     port = <%= @mail_config['port'] %>
     password = "<%= @mail_config['password'] %>"
     props = [<% @mail_config['props'].each do |k,v| -%>"<%= k %>":"<%= v %>",<% end %>]
-    default {
-      from = "<%= @mail_config['defaults.from'] %>"
-    }
   }
+  mail.default.from = "<%= @mail_config['defaults.from'] %>"
   <%- end -%>
 }
 
