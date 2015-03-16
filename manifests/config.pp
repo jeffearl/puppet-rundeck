@@ -12,6 +12,8 @@ class rundeck::config(
   $user                  = $rundeck::user,
   $group                 = $rundeck::group,
   $ssl_enabled           = $rundeck::ssl_enabled,
+  $ssl_port              = $rundeck::ssl_port,
+  $tls_only              = $rundeck::tls_only,
   $projects_organization = $rundeck::projects_default_org,
   $projects_description  = $rundeck::projects_default_desc,
   $rd_loglevel           = $rundeck::rd_loglevel,
