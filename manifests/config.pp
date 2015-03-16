@@ -28,7 +28,8 @@ class rundeck::config(
   $service_name          = $rundeck::service_name,
   $mail_config           = $rundeck::mail_config,
   $security_config       = $rundeck::security_config,
-  $acl_policies          = $rundeck::acl_policies
+  $acl_policies          = $rundeck::acl_policies,
+  $rdeck_tempdir         = $rundeck::rdeck_tempdir
 ) inherits rundeck::params {
 
   $framework_config = deep_merge($rundeck::params::framework_config, $rundeck::framework_config)
@@ -40,6 +41,7 @@ class rundeck::config(
   $properties_dir = $framework_config['framework.etc.dir']
 
   ensure_resource('file', $properties_dir, {'ensure' => 'directory', 'owner' => $user, 'group' => $group} )
+  ensure_resource('file', $rdeck_tempdir, {'ensure' => 'directory', 'owner' => $user, 'group' => $group} )
 
   if 'file' in $auth_types {
 
@@ -54,10 +56,14 @@ class rundeck::config(
 
     $active_directory_auth_flag = 'sufficient'
     $ldap_auth_flag = 'sufficient'
+    $pam_auth_flag = 'sufficient'
   }
   elsif 'active_directory' in $auth_types {
     $active_directory_auth_flag = 'required'
     $ldap_auth_flag = 'sufficient'
+  }
+  elsif 'pam' in $auth_types {
+    $pam_auth_flag = 'sufficient'
   }
   else {
     $ldap_auth_flag = 'required'

@@ -98,6 +98,11 @@
 #
 # [*rdeck_home*]
 #   directory under which the projects directories live.
+#
+# [*rdeck_tempdir*]
+#   Sets the java.io.tmpdir in the rundeck profile configuration. Necessary
+#   when using the pam authentication module if /tmp is mounted with noexec.
+#
 # === Examples
 #
 # Installing rundeck with a custom jre:
