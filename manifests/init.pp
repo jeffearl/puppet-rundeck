@@ -48,6 +48,13 @@
 # [*ssl_enabled*]
 #   Enable ssl for the rundeck web application.
 #
+# [*ssl_port*]
+#   Listening port for ssl. Sets the ssl properties in the profile jvm config.
+#   If changed, port also needs to be specified in the framework/grails urls. 
+#
+# [*tls_only*]
+#   Boolean value. Disables the older, insecure ssl protocols in favor of tls. 
+#
 # [*projects_organization*]
 #  The organization value that will be set by default for any projects.
 #
@@ -120,6 +127,8 @@ class rundeck (
   $acl_template                 = $rundeck::params::acl_template,
   $service_logs_dir             = $rundeck::params::service_logs_dir,
   $ssl_enabled                  = $rundeck::params::ssl_enabled,
+  $ssl_port                     = $rundeck::params::ssl_port,
+  $tls_only                     = $rundeck::params::tls_only,
   $framework_config             = $rundeck::params::framework_config,
   $projects_organization        = $rundeck::params::projects_default_org,
   $projects_description         = $rundeck::params::projects_default_desc,
@@ -153,6 +162,8 @@ class rundeck (
   validate_hash($auth_config)
   validate_hash($auth_users)
   validate_bool($ssl_enabled)
+  validate_string($ssl_port)
+  validate_bool($tls_only)
   validate_string($projects_organization)
   validate_string($projects_description)
   validate_re($rd_loglevel, ['^ALL$', '^DEBUG$', '^ERROR$', '^FATAL$', '^INFO$', '^OFF$', '^TRACE$', '^WARN$'])
