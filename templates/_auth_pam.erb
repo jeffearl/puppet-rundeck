@@ -1,0 +1,6 @@
+org.rundeck.jaas.jetty.JettyPamLoginModule <%= @pam_auth_flag %>
+  debug="true"
+  service="<%= @auth_config['pam']['pam_service'] %>"
+  useUnixGroups="<%= @auth_config['pam']['useUnixGroups'] %>"
+  supplementalRoles="<%= @auth_config['pam']['supplementalRoles'] %>";
+

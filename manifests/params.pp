@@ -40,6 +40,7 @@ class rundeck::params {
   $rdeck_base = '/var/lib/rundeck'
   $rdeck_home = '/var/rundeck'
   $service_logs_dir = '/var/log/rundeck'
+  $rdeck_tempdir = '/tmp/rundeck'
 
   $framework_config = {
     'framework.server.name'     => $::fqdn,
@@ -145,7 +146,12 @@ class rundeck::params {
       'role_object_class'       => 'group',
       'supplemental_roles'      => 'user',
       'nested_groups'           => true
-    }
+    },
+    'pam' => {
+      'pam_service'             => 'password-auth',
+      'useUnixGroups'           => true,
+      'supplementalRoles'       => 'user'
+      }
   }
 
   $mail_config = {}

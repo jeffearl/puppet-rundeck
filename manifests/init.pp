@@ -105,6 +105,11 @@
 #
 # [*rdeck_home*]
 #   directory under which the projects directories live.
+#
+# [*rdeck_tempdir*]
+#   Sets the java.io.tmpdir in the rundeck profile configuration. Necessary
+#   when using the pam authentication module if /tmp is mounted with noexec.
+#
 # === Examples
 #
 # Installing rundeck with a custom jre:
@@ -152,6 +157,7 @@ class rundeck (
   $user                         = $rundeck::params::user,
   $group                        = $rundeck::params::group,
   $rdeck_home                   = $rundeck::params::rdeck_home,
+  $rdeck_tempdir                = $rundeck::params::rdeck_tempdir
 ) inherits rundeck::params {
 
   #validate_re($package_ensure, '\d+\.\d+\.\d+')
@@ -183,6 +189,7 @@ class rundeck (
   validate_string($user)
   validate_string($group)
   validate_absolute_path($rdeck_home)
+  validate_absolute_path($rdeck_tempdir)
 
   class { 'rundeck::install': } ->
   class { 'rundeck::config': } ->
