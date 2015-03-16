@@ -148,6 +148,7 @@ class rundeck (
   $user                         = $rundeck::params::user,
   $group                        = $rundeck::params::group,
   $rdeck_home                   = $rundeck::params::rdeck_home,
+  $rdeck_tempdir                = $rundeck::params::rdeck_tempdir
 ) inherits rundeck::params {
 
   #validate_re($package_ensure, '\d+\.\d+\.\d+')
@@ -177,6 +178,7 @@ class rundeck (
   validate_string($user)
   validate_string($group)
   validate_absolute_path($rdeck_home)
+  validate_absolute_path($rdeck_tempdir)
 
   class { 'rundeck::install': } ->
   class { 'rundeck::config': } ->
